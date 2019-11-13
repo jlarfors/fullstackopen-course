@@ -40,15 +40,6 @@ const Statistics = (props) => {
     }
 }
 
-const Feedback = () => (
-    <div>
-        <h1>give feedback</h1>
-        <FeebackButton onClick={() => console.log("Button")} text="good" />
-        <FeebackButton onClick={() => console.log("Button")} text="neutral" />
-        <FeebackButton onClick={() => console.log("Button")} text="bad" />
-    </div>
-)
-
 const App = () => {
     // save clicks of each button to own state
     const [good, setGood] = useState(0)
