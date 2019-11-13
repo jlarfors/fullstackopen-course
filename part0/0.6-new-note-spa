@@ -1,0 +1,12 @@
+title New Note Single Page App Sequence
+
+# POSTing new note
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+server-->browser: HTTP status 201, message: 'note created'
+
+# refreshing page to see the new note
+note over browser:
+browser invokes redrawNotes() function
+based on changed xhttp state change
+making the new note appear
+end note
