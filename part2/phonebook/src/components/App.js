@@ -1,17 +1,13 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import Phonebook from './Phonebook'
 
 const App = () => {
-  const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '0123456' },
-    { name: 'Charles Darwin', number: '987654' },
-    { name: 'Charles Xavier', number: '987654' },
-    { name: 'King Charles', number: '987654' },
-  ]) 
+  const [persons, setPersons] = useState([])
 
-  const [ newPerson, setNewPerson ] = useState({name: '', number: ''})
-  const [ filterName, setFilterName ] = useState('')
+  const [newPerson, setNewPerson] = useState({ name: '', number: '' })
+  const [filterName, setFilterName] = useState('')
 
   const handleFilterChange = (event) => {
     setFilterName(event.target.value)
@@ -19,7 +15,7 @@ const App = () => {
 
   const handleInputChange = (event) => {
     const target = event.target
-    const copy = {...newPerson}
+    const copy = { ...newPerson }
     copy[target.name] = target.value
     setNewPerson(copy)
   }
@@ -27,11 +23,23 @@ const App = () => {
   const addPhonebookEntry = (event) => {
     event.preventDefault()
     if (persons.some(person => person.name === newPerson.name)) {
-        alert(`${newPerson.name} is already added to the phonebook`)
+      alert(`${newPerson.name} is already added to the phonebook`)
     } else {
-        setPersons(persons.concat(newPerson))
+      setPersons(persons.concat(newPerson))
     }
   }
+
+  const setInitialPersons = () => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        const persons = response.data
+        console.log(persons)
+        setPersons(persons)
+      })
+  }
+
+  useEffect(setInitialPersons, [])
 
   return (
     <div>
@@ -42,7 +50,7 @@ const App = () => {
         handleFilterChange={handleFilterChange}
         handleInputChange={handleInputChange}
         addPhonebookEntry={addPhonebookEntry}
-        />
+      />
     </div>
   )
 }
