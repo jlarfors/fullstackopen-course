@@ -19,6 +19,21 @@
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
       "id": 4
+    },
+    {
+      "name": "Charles Darwin",
+      "number": "123123123123",
+      "id": 5
+    },
+    {
+      "name": "Batman",
+      "number": "123123123",
+      "id": 6
+    },
+    {
+      "name": "Superman",
+      "number": "91919191",
+      "id": 7
     }
   ]
 }

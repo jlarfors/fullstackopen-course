@@ -1,7 +1,7 @@
 import React from 'react'
 import Person from './Person'
 
-const Numbers = ({ persons, filterName }) => {
+const Numbers = ({ persons, filterName, deletePhonebookEntry }) => {
   const isSearchMatch = (name, filter) => {
     return (!filter || name.toUpperCase().includes(filter.toUpperCase()))
   }
@@ -9,7 +9,7 @@ const Numbers = ({ persons, filterName }) => {
   const personList = persons
     .filter(person => !filterName || isSearchMatch(person.name, filterName))
     // .filter(person => true)
-    .map((person, index) => <Person key={index} person={person} />)
+    .map((person, index) => <Person key={index} person={person} deletePhonebookEntry={deletePhonebookEntry} />)
 
   return (
     <div>
