@@ -10,6 +10,9 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(cors())
 
+// tell app to use static content from the frontend-build directory
+app.use(express.static('frontend-build'))
+
 // custom token to return data for POST
 morgan.token('data', function getData (req) {
   return req.method === "POST" ? JSON.stringify(req.body) : null
