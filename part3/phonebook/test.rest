@@ -10,3 +10,17 @@ Content-Type: application/json
     "name": "Test McGee",
     "number": "118 188"
 }
+
+### Test adding a person - validator
+
+POST http://localhost:3001/api/persons HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "ab",
+    "number": "0"
+}
+
+### Test Getting
+
+GET http://localhost:3001/api/persons/5dde636f367c8f5c8c4d3a36
