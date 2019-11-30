@@ -3,7 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-const Person = require("./models/person")
+const Person = require('./models/person')
 
 const app = express()
 
@@ -17,46 +17,46 @@ app.use(express.static('frontend-build'))
 
 // custom token to return data for POST
 morgan.token('data', function getData (req) {
-  return req.method === "POST" ? JSON.stringify(req.body) : null
+  return req.method === 'POST' ? JSON.stringify(req.body) : null
 })
 
-app.use(morgan(":method :url :status :res[content-length] - :response-time ms :data"))
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :data'))
 
 let persons = [
   {
-  "name": "Arto Hellas",
-  "number": "040-123456",
-  "id": 1
+    'name': 'Arto Hellas',
+    'number': '040-123456',
+    'id': 1
   },
   {
-  "name": "Ada Lovelace",
-  "number": "39-44-5323523",
-  "id": 2
+    'name': 'Ada Lovelace',
+    'number': '39-44-5323523',
+    'id': 2
   },
   {
-  "name": "Dan Abramov",
-  "number": "12-43-234345",
-  "id": 3
+    'name': 'Dan Abramov',
+    'number': '12-43-234345',
+    'id': 3
   },
   {
-  "name": "Mary Poppendieck",
-  "number": "39-23-6423122",
-  "id": 4
+    'name': 'Mary Poppendieck',
+    'number': '39-23-6423122',
+    'id': 4
   },
   {
-  "name": "Charles Darwin",
-  "number": "123123123123",
-  "id": 5
+    'name': 'Charles Darwin',
+    'number': '123123123123',
+    'id': 5
   },
   {
-  "name": "Batman",
-  "number": "123123123",
-  "id": 6
+    'name': 'Batman',
+    'number': '123123123',
+    'id': 6
   },
   {
-  "name": "Superman",
-  "number": "91919191",
-  "id": 7
+    'name': 'Superman',
+    'number': '91919191',
+    'id': 7
   }
 ]
 
@@ -73,10 +73,6 @@ app.get('/info', (request, response) => {
   `
   response.send(info)
 })
-
-const generateId = () => {
-  return Math.floor(Math.random() * Math.floor(1000));
-}
 
 app.post('/api/persons', (request, response, next) => {
   const body = request.body
@@ -104,7 +100,7 @@ app.post('/api/persons', (request, response, next) => {
       response.json(savedPerson.toJSON())
     })
     .catch(error => {
-      console.log("ERROR:", error)
+      console.log('ERROR:', error)
       next(error)
     })
 })
@@ -117,7 +113,7 @@ app.get('/api/persons', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.get('/api/persons/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response, next) => {
   Person.findById(request.params.id)
     .then(person => {
       if (person) {
@@ -146,7 +142,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -159,7 +155,7 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint)
 
 const errorHandler = (error, request, response, next) => {
-  console.error("Error Handler:", error.message)
+  console.error('Error Handler:', error.message)
 
   if (error.name === 'CastError' && error.kind === 'ObjectId') {
     return response.status(400).send({ error: 'malformatted id' })
