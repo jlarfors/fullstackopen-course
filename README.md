@@ -29,4 +29,4 @@ git subtree push --prefix part3/phonebook heroku master
 
 ### Live Application
 
-You can access the app here: (whispering-brushlands-36634)[https://whispering-brushlands-36634.herokuapp.com/]
+You can access the app here: [whispering-brushlands-36634](https://whispering-brushlands-36634.herokuapp.com/)
