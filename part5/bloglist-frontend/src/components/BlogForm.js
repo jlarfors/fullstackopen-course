@@ -1,12 +1,8 @@
 
 import React from 'react'
-import Blog from './Blog'
 
-const BlogForm = ({ user, handleLogout, createBlog, newBlog, handleInputChange, blogs }) => (
+const BlogForm = ({ createBlog, newBlog, handleInputChange }) => (
   <div>
-    <h2>Blogs</h2>
-    <p>{user.name} is logged in <button type="submit" onClick={handleLogout}>logout</button></p>
-  
     <form onSubmit={createBlog}>
       <div>
         title: <input type="text" name="title" onChange={handleInputChange} value={newBlog.title} />
@@ -19,8 +15,6 @@ const BlogForm = ({ user, handleLogout, createBlog, newBlog, handleInputChange, 
       </div>
       <button type="submit">create</button>
     </form>
-    
-    {blogs.map((blog, index) => <Blog key={index} blog={blog}/>)}
   </div>
 )
 

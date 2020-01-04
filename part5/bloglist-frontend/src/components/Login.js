@@ -3,11 +3,11 @@ import React from 'react'
 const Login = ({ username, setUsername, password, setPassword, handleLogin }) => (
   <div>
     <h2>Login</h2>
-  
+
     <form onSubmit={handleLogin}>
       <div>
         username
-          <input
+        <input
           type="text"
           value={username}
           name="Username"
@@ -16,7 +16,7 @@ const Login = ({ username, setUsername, password, setPassword, handleLogin }) =>
       </div>
       <div>
         password
-          <input
+        <input
           type="password"
           value={password}
           name="Password"
