@@ -1,14 +1,15 @@
 
 import React, { useState, useEffect } from 'react'
 
-import Blog from './Blog'
-import BlogForm from './BlogForm'
-import Login from './Login'
-import Notification from './Notification'
-import Togglable from './Togglable'
+import Blog from './components/Blog'
+import BlogForm from './components/BlogForm'
+import Login from './components/Login'
+import Notification from './components/Notification'
+import Togglable from './components/Togglable'
+import SimpleBlog from './components/SimpleBlog'
 
-import blogService from '../services/blogs'
-import loginService from '../services/login'
+import blogService from './services/blogs'
+import loginService from './services/login'
 
 const loggedInBlogUserString = 'loggedInBlogUser'
 
@@ -154,17 +155,14 @@ const App = () => {
       </div>
     )
   }
-
   return (
-    <div>
+    <div id='app'>
       <Notification notification={notification} />
-
       {
         user === null ?
           loginForm() :
           blogForm()
       }
-
     </div>
   )
 }

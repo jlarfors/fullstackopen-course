@@ -1,7 +1,7 @@
 
 import React from 'react'
 const Login = ({ username, setUsername, password, setPassword, handleLogin }) => (
-  <div>
+  <div className='login-form'>
     <h2>Login</h2>
 
     <form onSubmit={handleLogin}>
@@ -10,7 +10,7 @@ const Login = ({ username, setUsername, password, setPassword, handleLogin }) =>
         <input
           type="text"
           value={username}
-          name="Username"
+          name="username"
           onChange={({ target }) => setUsername(target.value)}
         />
       </div>
@@ -19,7 +19,7 @@ const Login = ({ username, setUsername, password, setPassword, handleLogin }) =>
         <input
           type="password"
           value={password}
-          name="Password"
+          name="password"
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>

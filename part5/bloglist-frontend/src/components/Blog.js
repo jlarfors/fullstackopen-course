@@ -22,18 +22,22 @@ const Blog = ({ blog, user, handleLikeButton, handleRemoveButton }) => {
   }
 
   return (
-    <div style={blogStyle} onClick={handleDetailToggle}>
+    <div className="blog" style={blogStyle} onClick={handleDetailToggle}>
 
       {
         showDetailed ?
+          // detailed view
           <div>
-            {blog.title} {blog.author} <br/>
-            <a href={blog.url}>{blog.url}</a> <br/>
+            <div className="blog-title">{blog.title}</div> <div className="blog-author">{blog.author}</div> <br/>
+            <div className="blog-url"><a href={blog.url}>{blog.url}</a></div> <br/>
             {blog.likes} likes <button onClick={(event) => handleLikeButton(event, blog)}>like</button> <br/>
-          added by {blog.user.name} <br/>
+            added by {blog.user.name} <br/>
             {removeButton}
           </div> :
-          <div>{blog.title} {blog.author}</div>
+          // minimal view
+          <div>
+            <div className="blog-title">{blog.title}</div> <div className="blog-author">{blog.author}</div> <br/>
+          </div>
       }
 
     </div>
