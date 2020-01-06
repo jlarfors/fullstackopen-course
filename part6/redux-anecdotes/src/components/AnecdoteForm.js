@@ -6,7 +6,7 @@ import { createAnecdote } from '../reducers/anecdoteReducer'
 const AnecdoteForm = (props) => {
   const newAnecdote = useField('text')
 
-  const addAnecdote = (event) => {
+  const addAnecdote = async (event) => {
     event.preventDefault()
     console.log('addAnecdote: ', newAnecdote.value)
     props.createAnecdote(newAnecdote.value)

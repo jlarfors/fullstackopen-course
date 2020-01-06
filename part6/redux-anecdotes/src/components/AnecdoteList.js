@@ -7,11 +7,8 @@ const AnecdoteList = (props) => {
 
   const vote = (anecdote) => {
     console.log('vote', anecdote.id)
-    props.voteAnecdote(anecdote.id)
-    props.showNotification(`you voted '${anecdote.content}'`)
-    setTimeout(() => {
-      props.hideNotification()
-    }, 5000)
+    props.voteAnecdote(anecdote)
+    props.showNotification(`you voted '${anecdote.content}'`, 10)
   }
 
   return (

@@ -6,12 +6,19 @@ const asObject = (message, visible = true) => {
   }
 }
 
-export const showNotification = (message) => {
-  return {
-    type: 'SHOW',
-    data: {
-      message
-    }
+export const showNotification = (message, timeout = 10) => {
+  return async dispatch => {
+    dispatch({
+      type: 'SHOW',
+      data: {
+        message
+      }
+    })
+    setTimeout(() => {
+      dispatch({
+        type: 'HIDE'
+      })
+    }, timeout * 1000)
   }
 }
 
