@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { useField } from '../hooks'
 import { createAnecdote } from '../reducers/anecdoteReducer'
 
@@ -8,7 +9,7 @@ const AnecdoteForm = (props) => {
   const addAnecdote = (event) => {
     event.preventDefault()
     console.log('addAnecdote: ', newAnecdote.value)
-    props.store.dispatch(createAnecdote(newAnecdote.value))
+    props.createAnecdote(newAnecdote.value)
   }
 
   return (
@@ -22,4 +23,7 @@ const AnecdoteForm = (props) => {
   )
 }
 
-export default AnecdoteForm
+export default connect(
+  null,
+  { createAnecdote }
+)(AnecdoteForm)
