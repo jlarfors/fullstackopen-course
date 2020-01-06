@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Container } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
   Route, Link, Redirect, withRouter
@@ -144,7 +145,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <Container>
       <h1>Software anecdotes</h1>
       <Router>
         <Menu />
@@ -157,7 +158,7 @@ const App = () => {
         <Route exact path="/create" render={() => <CreateNew addNew={addNew} setNotification={setNotification} />} />
         <Footer />
       </Router>
-    </div>
+    </Container>
   )
 }
 
