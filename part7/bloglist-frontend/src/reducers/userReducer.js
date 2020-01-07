@@ -1,72 +1,29 @@
 
-import loginService from '../services/login'
-import blogService from '../services/blogs'
+import userService from '../services/users'
 
-const loggedInBlogUserString = 'loggedInBlogUser'
-
-export const initUser = () => {
-  const loggedInUserJSON = window.localStorage.getItem(loggedInBlogUserString)
-  if (loggedInUserJSON) {
-    console.log('User is Logged In!')
-    const user = JSON.parse(loggedInUserJSON)
-    blogService.setToken(user.token)
-    return dispatch => {
-      dispatch({
-        type: 'SET',
-        data: { user }
-      })
-    }
-  }
-  return dispatch => {
-    dispatch({
-      type: 'NOTHING',
-    })
-  }
-}
-
-export const login = (credentials) => {
+export const initUsers = () => {
   return async dispatch => {
-    console.log('login: ', credentials.username)
-    console.log('login: ', credentials.password)
-    const user = await loginService.login(credentials)
-    blogService.setToken(user.token)
-    window.localStorage.setItem(
-      loggedInBlogUserString, JSON.stringify(user)
-    )
+    console.log('initUsers')
+    const users = await userService.getAll()
+    console.log('users: ', users)
     dispatch({
-      type: 'LOGGED_IN',
+      type: 'INIT_USERS',
       data: {
-        user
+        users
       }
     })
   }
 }
 
-export const logout = () => {
-  return async dispatch => {
-    console.log('logout')
-    blogService.setToken(null)
-    window.localStorage.removeItem(loggedInBlogUserString)
-    dispatch({
-      type: 'LOGGED_OUT'
-    })
-  }
-}
-
-const initialState = null
+const initialState = []
 
 const userReducer = (state = initialState, action) => {
   console.log('state now: ', state)
   console.log('action', action)
   switch (action.type) {
-  case 'SET': {
-    return action.data.user
-  }
-  case 'LOGGED_IN': {
-    return action.data.user
-  }
-  case 'LOGGED_OUT': {
-    return null
+  case 'INIT_USERS': {
+    console.log('setting: ', action.data.users)
+    return action.data.users
   }
   default:
     return state

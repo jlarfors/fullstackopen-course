@@ -1,8 +1,10 @@
 
+import { Form, Button } from 'semantic-ui-react'
 import React from 'react'
 import { connect } from 'react-redux'
 
 import { initBlogs, createBlog } from '../reducers/blogReducer'
+import { showNotification } from '../reducers/notificationReducer'
 import { useField } from '../hooks'
 
 const BlogForm = (props) => {
@@ -33,38 +35,45 @@ const BlogForm = (props) => {
 
       formReset()
 
-      props.setNotification({ 'message' : `New Blog: "${title.value}" created`, 'status' : 'success' })
+      props.showNotification(`New Blog: "${title.value}" created`, 'success')
       setTimeout(() => {
-        props.setNotification(null)
+        props.showNotification(null)
       }, 2000)
     } catch (error) {
-      props.setNotification({ 'message' : `Creating Blog Post Failed: ${error.response.data.error}`, 'status' : 'error' })
+      console.log('error: ', error)
+      props.showNotification(`Creating Blog Post Failed: ${error.response.data.error}`, 'error' )
       setTimeout(() => {
-        props.setNotification(null)
+        props.showNotification(null)
       }, 2000)
     }
   }
 
   return (
     <div>
-      <form onSubmit={createBlog}>
-        <div>
-          title: <input {...title} />
-        </div>
-        <div>
-          author: <input {...author} />
-        </div>
-        <div>
-          url: <input {...url} />
-        </div>
-        <button type="submit">create</button>
-      </form>
+      <Form onSubmit={createBlog}>
+        <Form.Field>
+          <label>title:</label>
+          <input {...title} />
+        </Form.Field>
+        <Form.Field>
+          <label>author:</label>
+          <input {...author} />
+        </Form.Field>
+        <Form.Field>
+          <label>url:</label>
+          <input {...url} />
+        </Form.Field>
+        <Form.Field>
+          <Button type="submit">create</Button>
+        </Form.Field>
+      </Form>
     </div>
   )}
 
 const mapDispatchToProps = {
   initBlogs,
   createBlog,
+  showNotification
 }
 
 export default connect(null, mapDispatchToProps)(BlogForm)

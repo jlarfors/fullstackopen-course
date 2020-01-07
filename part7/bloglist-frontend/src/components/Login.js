@@ -1,10 +1,11 @@
 
+import { Form, Button } from 'semantic-ui-react'
 import React from 'react'
 import { connect } from 'react-redux'
 
 import { useField } from '../hooks'
 
-import { login } from '../reducers/userReducer'
+import { login } from '../reducers/loginReducer'
 import { showNotification } from '../reducers/notificationReducer'
 
 const Login = (props) => {
@@ -32,17 +33,19 @@ const Login = (props) => {
     <div className='login-form'>
       <h2>Login</h2>
 
-      <form onSubmit={handleLogin}>
-        <div>
-          username
+      <Form onSubmit={handleLogin}>
+        <Form.Field>
+          <label>username:</label>
           <input {...username} />
-        </div>
-        <div>
-          password
+        </Form.Field>
+        <Form.Field>
+          password:
           <input {...password} />
-        </div>
-        <button type="submit">login</button>
-      </form>
+        </Form.Field>
+        <Form.Field>
+          <Button type="submit">login</Button>
+        </Form.Field>
+      </Form>
     </div>
   )}
 

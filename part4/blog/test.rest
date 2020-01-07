@@ -20,6 +20,15 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpsY
     "likes": 5
 }
 
+### Add a comment to a blog
+
+POST http://localhost:3001/api/blogs/5e0f313bf02ff1ca6f42a86c/comments HTTP/1.1
+Content-Type: application/json
+
+{
+   "comment": "this is a comment!"
+}
+
 
 ### Create User
 
