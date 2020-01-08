@@ -9,8 +9,8 @@ import { login } from '../reducers/loginReducer'
 import { showNotification } from '../reducers/notificationReducer'
 
 const Login = (props) => {
-  const [username, resetUsername] = useField('text')
-  const [password, resetPassword] = useField('password')
+  const [username, resetUsername] = useField('username', 'text')
+  const [password, resetPassword] = useField('password', 'password')
 
   const resetForm = () => {
     resetUsername()

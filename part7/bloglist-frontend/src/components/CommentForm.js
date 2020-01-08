@@ -4,9 +4,9 @@ import React from 'react'
 
 import { useField } from '../hooks'
 
-const CommentForm = ({blog, commentBlog}) => {
+const CommentForm = ({ blog, commentBlog }) => {
 
-  const [comment, resetComment] = useField('text')
+  const [comment, resetComment] = useField('comment', 'text')
 
   const handleNewComment = (event) => {
     console.log('comment: ', comment.value)

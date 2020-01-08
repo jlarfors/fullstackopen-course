@@ -19,6 +19,7 @@ const NavigationMenu = (props) => {
           props.user
             ?
             <Menu.Menu position='right'>
+              <Menu.Item>Logged in as {props.user.username}</Menu.Item>
               <Menu.Item>
                 <Link onClick={props.logout}>Logout</Link>
               </Menu.Item>

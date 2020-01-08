@@ -8,9 +8,9 @@ import { showNotification } from '../reducers/notificationReducer'
 import { useField } from '../hooks'
 
 const BlogForm = (props) => {
-  const [title, titleReset] = useField('text')
-  const [author, authorReset] = useField('text')
-  const [url, urlReset] = useField('text')
+  const [title, titleReset] = useField('title', 'text')
+  const [author, authorReset] = useField('author', 'text')
+  const [url, urlReset] = useField('url', 'text')
 
   const formReset = () => {
     titleReset()
